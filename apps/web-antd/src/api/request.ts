@@ -15,8 +15,7 @@ import { useAccessStore } from '@vben/stores';
 
 import { message } from 'ant-design-vue';
 
-import { useAuthStore } from '#/store';
-
+// import { useAuthStore } from '#/store';
 import { refreshTokenApi } from './core';
 
 const { apiURL } = useAppConfig(import.meta.env, import.meta.env.PROD);
@@ -31,18 +30,18 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
    * 重新认证逻辑
    */
   async function doReAuthenticate() {
-    console.warn('Access token or refresh token is invalid or expired. ');
-    const accessStore = useAccessStore();
-    const authStore = useAuthStore();
-    accessStore.setAccessToken(null);
-    if (
-      preferences.app.loginExpiredMode === 'modal' &&
-      accessStore.isAccessChecked
-    ) {
-      accessStore.setLoginExpired(true);
-    } else {
-      await authStore.logout();
-    }
+    console.warn('Access token is invalid or expired. ');
+    // const accessStore = useAccessStore();
+    // const authStore = useAuthStore();
+    // accessStore.setAccessToken(null);
+    // if (
+    //   preferences.app.loginExpiredMode === 'modal' &&
+    //   accessStore.isAccessChecked
+    // ) {
+    //   accessStore.setLoginExpired(true);
+    // } else {
+    //   await authStore.logout();
+    // }
   }
 
   /**
@@ -50,10 +49,9 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
    */
   async function doRefreshToken() {
     const accessStore = useAccessStore();
-    const resp = await refreshTokenApi();
-    const newToken = resp.data;
-    accessStore.setAccessToken(newToken);
-    return newToken;
+    const { jwtToken } = await refreshTokenApi();
+    accessStore.setAccessToken(jwtToken);
+    return jwtToken;
   }
 
   function formatToken(token: null | string) {
@@ -76,7 +74,7 @@ function createRequestClient(baseURL: string, options?: RequestClientOptions) {
     defaultResponseInterceptor({
       codeField: 'code',
       dataField: 'data',
-      successCode: 0,
+      successCode: 200,
     }),
   );
 
