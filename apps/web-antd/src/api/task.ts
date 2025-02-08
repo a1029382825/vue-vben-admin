@@ -46,13 +46,13 @@ export async function getTaskDetail(id: number) {
 /**
  * 添加任务
  */
-export async function addTask(data: TaskApi.Task) {
+export async function addTask(data: Partial<TaskApi.Task>) {
   return requestClient.post('/task/add', data);
 }
 
 /**
  * 更新任务
  */
-export async function updateTask(data: TaskApi.Task) {
+export async function updateTask(data: Partial<TaskApi.Task>) {
   return requestClient.post('/task/update', data);
 }

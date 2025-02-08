@@ -46,7 +46,7 @@ export async function getFarmDetail(id: number) {
 /**
  * 创建地块
  */
-export async function createFarm(data: Partial<FarmApi.Farm>) {
+export async function addFarm(data: Partial<FarmApi.Farm>) {
   return requestClient.post('/farm/add', data);
 }
 

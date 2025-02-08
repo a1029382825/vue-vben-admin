@@ -15,11 +15,11 @@ const { isSupported, gamepads } = useGamepad();
       class="flex flex-row items-center justify-center space-x-4"
     >
       <div class="flex flex-col">
-        <span class="text-2xl">Gamepad is not supported on this device.</span>
+        <span class="text-2xl">该设备不支持游戏手柄。</span>
         <span class="opacity-70">
-          It seems your device does not support the Gamepad API. Check
-          <a href="https://caniuse.com/gamepad">here</a> for a list of supported
-          devices.
+          看起来您的设备不支持游戏手柄API。请
+          <a href="https://caniuse.com/gamepad">在此</a>
+          查看支持的设备列表。
         </span>
       </div>
     </div>
@@ -28,9 +28,9 @@ const { isSupported, gamepads } = useGamepad();
       class="flex flex-row content-center items-center space-x-4"
     >
       <div class="flex flex-col">
-        <span class="text-2xl">No Gamepad Detected</span>
+        <span class="text-2xl">未检测到游戏手柄</span>
         <span class="opacity-50">
-          Ensure your gamepad is connected and press a button to wake it up.
+          请确保您的游戏手柄已连接，并按下任意按钮以唤醒它。
         </span>
       </div>
     </div>

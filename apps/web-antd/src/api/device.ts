@@ -72,13 +72,13 @@ export async function getDeviceDetail(id: number) {
 /**
  * 添加设备
  */
-export async function addDevice(data: DeviceApi.Device) {
+export async function addDevice(data: Partial<DeviceApi.Device>) {
   return requestClient.post('/device/add', data);
 }
 
 /**
  * 更新设备
  */
-export async function updateDevice(data: DeviceApi.Device) {
+export async function updateDevice(data: Partial<DeviceApi.Device>) {
   return requestClient.post('/device/update', data);
 }

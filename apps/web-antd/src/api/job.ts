@@ -49,13 +49,13 @@ export async function getJobDetail(id: number) {
 /**
  * 添加作业
  */
-export async function addJob(data: JobApi.Job) {
+export async function addJob(data: Partial<JobApi.Job>) {
   return requestClient.post('/job/add', data);
 }
 
 /**
  * 更新作业
  */
-export async function updateJob(data: JobApi.Job) {
+export async function updateJob(data: Partial<JobApi.Job>) {
   return requestClient.post('/job/update', data);
 }

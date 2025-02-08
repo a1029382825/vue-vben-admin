@@ -6,7 +6,7 @@ import { useVbenModal } from '@vben/common-ui';
 import { message } from 'ant-design-vue';
 
 import { useVbenForm } from '#/adapter/form';
-import { createFarm } from '#/api/farm';
+import { addFarm } from '#/api/farm';
 
 defineOptions({
   name: 'FarmFormModal',
@@ -73,7 +73,7 @@ async function onSubmit(values: Record<string, any>) {
   });
   modalApi.lock();
 
-  await createFarm(values as Partial<FarmApi.Farm>);
+  await addFarm(values as Partial<FarmApi.Farm>);
   modalApi.close();
   message.success({
     content: '创建成功',

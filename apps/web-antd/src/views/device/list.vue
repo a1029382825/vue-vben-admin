@@ -3,12 +3,14 @@ import type { VbenFormProps } from '#/adapter/form';
 import type { VxeTableGridOptions } from '#/adapter/vxe-table';
 import type { DeviceApi } from '#/api/device';
 
-import { Page } from '@vben/common-ui';
+import { Page, useVbenModal } from '@vben/common-ui';
 
 import { Button, message } from 'ant-design-vue';
 
 import { useVbenVxeGrid } from '#/adapter/vxe-table';
 import { getDeviceList } from '#/api/device';
+
+import DeviceFormModal from './form.vue';
 
 const formOptions: VbenFormProps = {
   // 默认展开
@@ -78,13 +80,22 @@ const gridOptions: VxeTableGridOptions<DeviceApi.Device> = {
   },
 };
 
-const [Grid] = useVbenVxeGrid({
+const [Grid, gridApi] = useVbenVxeGrid({
   formOptions,
   gridOptions,
 });
 
+const [FormModal, formModalApi] = useVbenModal({
+  connectedComponent: DeviceFormModal,
+  onOpenChange: (isOpen) => {
+    if (!isOpen) {
+      gridApi.reload();
+    }
+  },
+});
+
 function handleAdd() {
-  message.info('新增设备');
+  formModalApi.open();
 }
 
 function handleView(row: DeviceApi.Device) {
@@ -94,10 +105,11 @@ function handleView(row: DeviceApi.Device) {
 
 <template>
   <Page auto-content-height>
+    <FormModal />
     <Grid>
       <template #toolbar-actions>
         <Button class="mr-2" type="primary" @click="handleAdd">
-          新增设备
+          添加设备
         </Button>
       </template>
       <template #action="{ row }">
