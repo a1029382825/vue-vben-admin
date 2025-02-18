@@ -264,6 +264,24 @@ const routes: RouteRecordRaw[] = [
           title: 'JsonViewer',
         },
       },
+      {
+        name: 'Motion',
+        path: '/examples/motion',
+        component: () => import('#/views/examples/motion/index.vue'),
+        meta: {
+          icon: 'mdi:animation-play',
+          title: 'Motion',
+        },
+      },
+      {
+        name: 'CountTo',
+        path: '/examples/count-to',
+        component: () => import('#/views/examples/count-to/index.vue'),
+        meta: {
+          icon: 'mdi:animation-play',
+          title: 'CountTo',
+        },
+      },
     ],
   },
 ];
